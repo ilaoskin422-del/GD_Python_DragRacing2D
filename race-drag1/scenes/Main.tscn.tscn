@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://n01265mgv31t"]
+
+[ext_resource type="Script" uid="uid://bi7xfbrc5l01v" path="res://scripts/CityBackground.gd" id="1_m22vo"]
+[ext_resource type="Script" uid="uid://g4rk7r5hhtel" path="res://scripts/RaceManager.gd" id="1_noyc1"]
+[ext_resource type="Script" uid="uid://xc7so6cxphl8" path="res://scripts/PlayerCar.gd" id="1_y1nyx"]
+[ext_resource type="Script" uid="uid://36ia6w33t671" path="res://scripts/MobileUI.gd" id="2_fdsuf"]
+[ext_resource type="Script" uid="uid://bnbeul4c8pwf0" path="res://scripts/RoadBackground.gd" id="2_noyc1"]
+[ext_resource type="Texture2D" uid="uid://hkyqp08evi" path="res://images.jpg" id="5_mj408"]
+[ext_resource type="Script" uid="uid://vv6yftwwuulu" path="res://scripts/EnemyCar.gd" id="6_s7s3c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_38oyq"]
+size = Vector2(5403, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mj408"]
+size = Vector2(40, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_px7ib"]
+size = Vector2(55, 95)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7s3c"]
+bg_color = Color(0.8, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mj408"]
+bg_color = Color(0, 0.6666667, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Main_tscn" type="Node2D" unique_id=1468902297]
+
+[node name="RaceManager" type="Node2D" parent="." unique_id=1043416394]
+script = ExtResource("1_noyc1")
+
+[node name="CityBackground" type="Node2D" parent="." unique_id=1000149530]
+script = ExtResource("1_m22vo")
+
+[node name="RoadBackground" type="Node2D" parent="." unique_id=163927590]
+script = ExtResource("2_noyc1")
+
+[node name="FinishLine" type="Area2D" parent="." unique_id=1099026609]
+position = Vector2(-104, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine" unique_id=1145409042]
+position = Vector2(174.5, 18.5)
+shape = SubResource("RectangleShape2D_38oyq")
+
+[node name="ColorRect" type="ColorRect" parent="FinishLine" unique_id=354986906]
+offset_right = 800.0
+offset_bottom = 20.0
+color = Color(1, 0, 0, 1)
+
+[node name="PlayerCar" type="CharacterBody2D" parent="." unique_id=1270449718]
+position = Vector2(393, 707)
+script = ExtResource("1_y1nyx")
+
+[node name="Camera2D" type="Camera2D" parent="PlayerCar" unique_id=647795329]
+position = Vector2(-146, -299)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerCar" unique_id=1152903538]
+position = Vector2(-117.49997, 45.250015)
+scale = Vector2(0.49783537, 0.428899)
+texture = ExtResource("5_mj408")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCar" unique_id=542833639]
+position = Vector2(-3, 0)
+shape = SubResource("RectangleShape2D_mj408")
+debug_color = Color(9.62615e-08, 0.60161084, 0.6926185, 0.41960785)
+
+[node name="EnemyCar" type="CharacterBody2D" parent="." unique_id=672454984]
+position = Vector2(400, 800)
+script = ExtResource("6_s7s3c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyCar" unique_id=766418370]
+position = Vector2(100, -45.25)
+shape = SubResource("RectangleShape2D_px7ib")
+
+[node name="MobileUI" type="CanvasLayer" parent="." unique_id=1833971510]
+script = ExtResource("2_fdsuf")
+
+[node name="Control" type="Control" parent="MobileUI" unique_id=1881154627]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 12.0
+offset_right = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeLabel" type="Label" parent="MobileUI/Control" unique_id=693747076]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 190.0
+offset_right = 213.0
+offset_bottom = 228.0
+theme_override_font_sizes/font_size = 20
+text = "TIME: 0.000 sec"
+horizontal_alignment = 1
+
+[node name="GasButton" type="Button" parent="MobileUI/Control" unique_id=1989205572]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 655.0
+offset_right = 209.0
+offset_bottom = 775.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_s7s3c")
+text = "GAS"
+
+[node name="StartButton" type="Button" parent="MobileUI/Control" unique_id=1622562479]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 677.0
+offset_right = 186.0
+offset_bottom = 757.0
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_mj408")
+text = "START"
+
+[node name="SpeedLabel" type="Label" parent="MobileUI/Control" unique_id=607933856]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 50.0
+offset_right = 181.0
+offset_bottom = 130.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "0 km/h"
+tab_stops = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[node name="GearLabel" type="Label" parent="MobileUI/Control" unique_id=1066689200]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 140.0
+offset_right = 85.0
+offset_bottom = 174.0
+theme_override_colors/font_color = Color(1, 1, 0.05490196, 1)
+theme_override_font_sizes/font_size = 24
+text = "G1"
+
+[node name="CountdownLabel" type="Label" parent="MobileUI/Control" unique_id=1247981407]
+visible = false
+layout_mode = 0
+offset_left = 250.0
+offset_top = 400.0
+offset_right = 450.0
+offset_bottom = 550.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 72
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="MobileUI/Control/GasButton" to="MobileUI" method="_on_gas_button_down"]
+[connection signal="button_up" from="MobileUI/Control/GasButton" to="MobileUI" method="_on_gas_button_up"]
+[connection signal="pressed" from="MobileUI/Control/StartButton" to="MobileUI" method="_on_start_button_pressed"]

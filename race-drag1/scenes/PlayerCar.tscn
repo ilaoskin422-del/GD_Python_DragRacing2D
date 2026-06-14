@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cpurel2sqvcw4"]
+
+[ext_resource type="Texture2D" uid="uid://shb47fs7i6ye" path="res://icon.png" id="1"]
+
+[node name="PlayerCar" type="CharacterBody2D" unique_id=1758000447]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1015439757]
+texture = ExtResource("1")
+
+[node name="WheelLeft" type="Sprite2D" parent="." unique_id=1518836015]
+texture = ExtResource("1")
